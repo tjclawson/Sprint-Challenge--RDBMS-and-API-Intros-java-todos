@@ -13,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -39,6 +41,21 @@ public class UserController {
     public ResponseEntity<?> getUserById(@PathVariable long userid) {
         User myUser = userService.findUserById(userid);
         return new ResponseEntity<>(myUser, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user/{userid}/todos", produces = {"application/json"})
+    public ResponseEntity<?> getUserTodos(@PathVariable long userid) {
+        User myUser = userService.findUserById(userid);
+        List<Todo> myTodos = myUser.getTodos();
+        List<Todo> myUncompleteTodos = new ArrayList<>();
+
+        for (Todo t : myTodos) {
+            if (!t.isCompleted()) {
+                myUncompleteTodos.add(t);
+            }
+        }
+        myUncompleteTodos.sort(Comparator.comparing(Todo::getDatestarted));
+        return new ResponseEntity<>(myUncompleteTodos, HttpStatus.OK);
     }
 
     // http://localhost:2019/users/user

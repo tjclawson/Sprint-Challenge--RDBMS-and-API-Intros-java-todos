@@ -1,5 +1,6 @@
 package com.tjclawson.sprintchallengerdbmsandapi.services;
 
+import com.tjclawson.sprintchallengerdbmsandapi.models.Todo;
 import com.tjclawson.sprintchallengerdbmsandapi.models.User;
 
 import java.util.List;
@@ -15,6 +16,4 @@ public interface UserService {
     User update(User user, long id);
 
     void delete(long id);
-
-
 }
