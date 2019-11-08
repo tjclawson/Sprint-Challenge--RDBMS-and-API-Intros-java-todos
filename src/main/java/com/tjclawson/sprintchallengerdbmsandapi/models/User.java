@@ -35,7 +35,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String primaryemail, String password) {
+    public User(String username, String password, String primaryemail) {
         this.username = username;
         this.primaryemail = primaryemail;
         this.password = password;
@@ -87,5 +87,10 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
+        role.getUsers().add(this);
     }
 }

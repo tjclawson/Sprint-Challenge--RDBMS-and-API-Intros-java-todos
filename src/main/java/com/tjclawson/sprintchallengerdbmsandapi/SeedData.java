@@ -1,10 +1,10 @@
-package com.lambdaschool.todo;
+package com.tjclawson.sprintchallengerdbmsandapi;
 
-import com.lambdaschool.todo.models.Role;
-import com.lambdaschool.todo.models.Todo;
-import com.lambdaschool.todo.models.User;
-import com.lambdaschool.todo.services.RoleService;
-import com.lambdaschool.todo.services.UserService;
+import com.tjclawson.sprintchallengerdbmsandapi.models.Role;
+import com.tjclawson.sprintchallengerdbmsandapi.models.Todo;
+import com.tjclawson.sprintchallengerdbmsandapi.models.User;
+import com.tjclawson.sprintchallengerdbmsandapi.services.RoleService;
+import com.tjclawson.sprintchallengerdbmsandapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

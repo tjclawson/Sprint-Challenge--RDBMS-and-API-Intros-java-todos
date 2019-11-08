@@ -1,9 +1,13 @@
 package com.tjclawson.sprintchallengerdbmsandapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "todos")
+@JsonIgnoreProperties("completedhasbeenset")
 public class Todo {
 
     @Id
@@ -12,7 +16,10 @@ public class Todo {
 
     @Column(nullable = false)
     private String description;
-    private String datestarted;
+    private Date datestarted;
+
+    @Transient
+    public boolean completedhasbeenset = false;
     private boolean completed;
 
     @ManyToOne
@@ -22,12 +29,20 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(String description, String datestarted, boolean completed, User user) {
+    public Todo(String description, Date datestarted, boolean completed, User user) {
         this.description = description;
         this.datestarted = datestarted;
         this.completed = completed;
         this.user = user;
     }
+
+    public Todo(String description, Date datestarted, User user) {
+        this.description = description;
+        this.datestarted = datestarted;
+        this.completed = false;
+        this.user = user;
+    }
+
 
     public long getTodoid() {
         return todoid;
@@ -45,11 +60,11 @@ public class Todo {
         this.description = description;
     }
 
-    public String getDatestarted() {
+    public Date getDatestarted() {
         return datestarted;
     }
 
-    public void setDatestarted(String datestarted) {
+    public void setDatestarted(Date datestarted) {
         this.datestarted = datestarted;
     }
 
@@ -58,6 +73,7 @@ public class Todo {
     }
 
     public void setCompleted(boolean completed) {
+        completedhasbeenset = true;
         this.completed = completed;
     }
 
