@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "todos")
-@JsonIgnoreProperties({"completedhasbeenset", "user"})
+@JsonIgnoreProperties(value = {"completedhasbeenset", "user"}, allowSetters = true)
 public class Todo {
 
     @Id
@@ -24,7 +24,7 @@ public class Todo {
 
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties("user")
+    //@JsonIgnoreProperties("user")
     private User user;
 
     public Todo() {

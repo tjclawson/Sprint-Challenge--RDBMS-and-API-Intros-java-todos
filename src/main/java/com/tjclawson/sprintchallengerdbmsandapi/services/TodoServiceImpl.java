@@ -1,6 +1,7 @@
 package com.tjclawson.sprintchallengerdbmsandapi.services;
 
 import com.tjclawson.sprintchallengerdbmsandapi.models.Todo;
+import com.tjclawson.sprintchallengerdbmsandapi.models.User;
 import com.tjclawson.sprintchallengerdbmsandapi.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

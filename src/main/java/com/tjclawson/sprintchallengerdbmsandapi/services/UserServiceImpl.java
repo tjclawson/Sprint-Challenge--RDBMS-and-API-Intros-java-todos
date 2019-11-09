@@ -61,6 +61,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user, long id) {
+        User updateUser = findUserById(id);
+
+        updateUser.setPassword(user.getPassword());
+        updateUser.setPrimaryemail(user.getPrimaryemail());
+        updateUser.setUsername(user.getUsername());
+
+        for (Todo t : user.getTodos()) {
+            Todo newTodo = new Todo(t.getDescription(), t.getDatestarted(), t.isCompleted(), updateUser);
+            updateUser.getTodos().add(newTodo);
+        }
+
+        for (Role r : user.getRoles()) {
+            Role newRole = roleService.findRoleById(r.getRoleid());
+            updateUser.addRole(newRole);
+        }
+
         return null;
     }
 
